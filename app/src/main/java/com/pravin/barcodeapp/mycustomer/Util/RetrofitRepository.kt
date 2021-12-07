@@ -14,5 +14,6 @@ open class RetrofitRepository() {
                 .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
         Log.e(TAG, "retrofit Instantiated" )
+
     }
 }
