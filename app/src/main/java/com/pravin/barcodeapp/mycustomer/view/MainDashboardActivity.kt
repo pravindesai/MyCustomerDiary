@@ -20,17 +20,8 @@ class MainDashboardActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         mainDashboardViewModel = ViewModelProvider(this).get(MainDashboardViewModel::class.java)
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
-
-    fun clicked(view: android.view.View) {
-
-    }
 }

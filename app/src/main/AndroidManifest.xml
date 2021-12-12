@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pravin.barcodeapp.mycustomer">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_SMS"/>
 
     <application
         android:name=".Util.CustomApplication"
@@ -14,10 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCustomer"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".view.LoginActivity"
+            android:exported="false" />
         <activity android:name=".Util.BaseActivity" />
-
-        <activity android:name=".view.MainDashboardActivity"
+        <activity android:name=".view.MainDashboardActivity" />
+        <activity
+            android:name=".view.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,5 +26,9 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

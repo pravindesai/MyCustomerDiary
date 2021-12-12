@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyCustomer</string>
+    <string name="don_t_have_account_create_one">Don\'t have account? create one</string>
+    <string name="already_have_account_login">Already have account? Login</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="otp">OTP</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
 </resources>
