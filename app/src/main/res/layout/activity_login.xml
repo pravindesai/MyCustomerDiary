@@ -12,12 +12,14 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="350dp"
+        android:animateLayoutChanges="true"
         android:background="@drawable/linearlayout_round_corner"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:animateLayoutChanges="true"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/logincard"

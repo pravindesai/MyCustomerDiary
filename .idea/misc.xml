@@ -7,11 +7,13 @@
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24010416666666667" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_phone_24dp.xml" value="0.24010416666666667" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/linearlayout_round_corner.xml" value="0.24010416666666667" />
-        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/smartphone_background.xml" value="0.16197916666666667" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_splash_screen.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/dialogview.xml" value="0.27447916666666666" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/otpmaterialdialog.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/mipmap-anydpi-v26/smartphone.xml" value="0.290625" />
       </map>
     </option>
   </component>

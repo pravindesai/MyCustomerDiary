@@ -9,6 +9,8 @@ import com.airbnb.lottie.animation.content.Content
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.BaseActivity
 import com.pravin.barcodeapp.mycustomer.Util.Constants
+import com.pravin.barcodeapp.mycustomer.Util.FirebaseUtil
+import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
@@ -25,8 +27,13 @@ class LoginActivity : BaseActivity() {
         loginButton.setOnClickListener {
             if(MODE == Constants.MODE_LOGIN){
 
+                UniversalProgressDialog.show(this)
+                Log.e(TAG, "onCreate: isUserExists "+FirebaseUtil.isUserExists("7020529425") )
+                UniversalProgressDialog.hide()
+
             }else if (MODE == Constants.MODE_SIGNUP){
                 otpDialog.show(this.supportFragmentManager, "")
+
             }
 
         }
