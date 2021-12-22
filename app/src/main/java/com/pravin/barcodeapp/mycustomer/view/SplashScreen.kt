@@ -11,6 +11,10 @@ import android.view.WindowManager
 import com.google.firebase.auth.FirebaseAuth
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.BaseActivity
+import androidx.core.app.ActivityOptionsCompat
+
+
+
 
 class SplashScreen : BaseActivity() {
 
@@ -19,26 +23,17 @@ class SplashScreen : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        supportActionBar?.hide()
-
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        }
-
         Handler(Looper.getMainLooper()).postDelayed({
+
             //If user not logged in already else
+            val bundle = ActivityOptionsCompat.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out).toBundle()
             if (FirebaseAuth.getInstance().currentUser==null){
                 val loginInActivity = Intent(this, LoginActivity::class.java)
-                startActivity(loginInActivity)
+                startActivity(loginInActivity, bundle)
                 finish()
             }else{
                 val profileActivity = Intent(this, MainDashboardActivity::class.java)
-                startActivity(profileActivity)
+                startActivity(profileActivity, bundle)
                 finish()
             }
 

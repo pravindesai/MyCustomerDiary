@@ -6,7 +6,8 @@ import com.pravin.barcodeapp.mycustomer.R
 
 object UniversalProgressDialog {
     lateinit var progressDialog:AlertDialog
-    lateinit var alertDialogBuilder:AlertDialog.Builder;
+    lateinit var alertDialogBuilder:AlertDialog.Builder
+
 
     fun show(context: Context) {
         alertDialogBuilder = AlertDialog.Builder(context, R.style.wrapdialogstyle)
@@ -16,11 +17,12 @@ object UniversalProgressDialog {
         progressDialog.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent);
 
         if (progressDialog.isShowing) return
-        progressDialog.show()
+            progressDialog.show()
     }
 
 
     fun hide(){
+        if (!this::progressDialog.isInitialized) return
         if (!progressDialog.isShowing) return
         progressDialog.hide()
     }

@@ -7,8 +7,11 @@ object Constants {
     const val KEY_CURRENT_ADMIN         = "currentAdmin"
     const val MODE_LOGIN = true
     const val MODE_SIGNUP = false
+    const val COUNTRY_PREFIX = "+91"
 
-    val bname           = "businessName";
+
+    val adminUid        = "adminUid";
+    val sname           = "serviceName";
     val phone           = "phoneNumber";
     val password        = "password";
     val mailExtension   = "@mycustomer.xyz"
