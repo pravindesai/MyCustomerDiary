@@ -13,12 +13,12 @@
         android:theme="@style/Theme.MyCustomer"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.activity.LoginActivity"
             android:exported="false" />
         <activity android:name=".Util.BaseActivity" />
-        <activity android:name=".view.MainDashboardActivity" />
+        <activity android:name=".view.activity.MainDashboardActivity" />
         <activity
-            android:name=".view.SplashScreen"
+            android:name=".view.activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,15 +1,15 @@
-package com.pravin.barcodeapp.mycustomer.view
+package com.pravin.barcodeapp.mycustomer.view.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.BaseActivity
 import com.pravin.barcodeapp.mycustomer.Util.Constants
 import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
+import com.pravin.barcodeapp.mycustomer.view.dialog.OtpDialog
 import com.pravin.barcodeapp.mycustomer.viewModel.LoginActivityViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -90,7 +90,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    class DialogDelegation(val context: LoginActivity) :OtpDialog.OnDialogResultPublished{
+    class DialogDelegation(val context: LoginActivity) : OtpDialog.OnDialogResultPublished {
         val TAG = "**"+this::class.java.simpleName
         val activity = context
         override fun onSucess(adminUid: String, sname:String, phonenumber: String) {

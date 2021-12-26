@@ -1,8 +1,7 @@
-package com.pravin.barcodeapp.mycustomer.view
+package com.pravin.barcodeapp.mycustomer.view.dialog
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +13,6 @@ import kotlinx.android.synthetic.main.otpmaterialdialog.view.*
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
 import android.util.Log
-import android.widget.Toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.pravin.barcodeapp.mycustomer.Util.Constants
@@ -30,7 +28,7 @@ class OtpDialog(val context:Activity, val bundle: Bundle) : DialogFragment() {
         fun onFailed()
     }
     val TAG = "**"+this::class.java.simpleName
-    var  onDialogResultPublished:OnDialogResultPublished? = null
+    var  onDialogResultPublished: OnDialogResultPublished? = null
     lateinit var auth: FirebaseAuth
     lateinit var verificationCode: String
 

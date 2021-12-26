@@ -98,6 +98,7 @@ object SessionManager {
         return deserializedCustomer
     }
 
+
     fun clearSession():Boolean{
         try {
             editor.clear()

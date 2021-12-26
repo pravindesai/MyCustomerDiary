@@ -1,9 +1,15 @@
 package com.pravin.barcodeapp.mycustomer.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class Batch(
+    @PrimaryKey
+    @SerializedName("id")
+    var id: Int,
     @SerializedName("adminUid")
     var adminUid: String,
     @SerializedName("description")
@@ -14,8 +20,6 @@ data class Batch(
     var endDate: Int,
     @SerializedName("fee")
     var fee: Int,
-    @SerializedName("id")
-    var id: Int,
     @SerializedName("staffId")
     var staffId: Int,
     @SerializedName("start_Date")

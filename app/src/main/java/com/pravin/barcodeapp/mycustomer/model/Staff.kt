@@ -1,9 +1,13 @@
 package com.pravin.barcodeapp.mycustomer.model
 
 
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class Staff(
+    @PrimaryKey
+    @SerializedName("id")
+    var id: Int,
     @SerializedName("adminUid")
     var adminUid: String,
     @SerializedName("description")
@@ -14,8 +18,6 @@ data class Staff(
     var endDate: Int,
     @SerializedName("fee")
     var fee: Int,
-    @SerializedName("id")
-    var id: Int,
     @SerializedName("staffId")
     var staffId: Int,
     @SerializedName("start_Date")

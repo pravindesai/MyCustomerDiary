@@ -4,9 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LoginActivity"
+    tools:context=".view.activity.LoginActivity"
     android:background="@color/grey"
     android:animateLayoutChanges="true">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="267dp"
+        android:layout_height="182dp"
+        app:lottie_autoPlay="true"
+        android:elevation="10dp"
+        app:lottie_repeatMode="reverse"
+        app:layout_constraintBottom_toTopOf="@+id/logincard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_rawRes="@raw/anim" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -97,6 +109,7 @@
                 android:layout_marginTop="5dp"
                 android:padding="5dp"
                 android:ems="10"
+                app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_password__24dp"
                 app:startIconTint="@color/design_default_color_primary"
                 android:hint="Password"

@@ -4,15 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_baseline_business_24.xml" value="0.24010416666666667" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_cancel_black_24dp.xml" value="0.290625" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_ham.xml" value="0.24166666666666667" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24010416666666667" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_menu.xml" value="0.290625" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/ic_phone_24dp.xml" value="0.24010416666666667" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/linearlayout_round_corner.xml" value="0.24010416666666667" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/drawable/smartphone_background.xml" value="0.16197916666666667" />
-        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_login.xml" value="0.4" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/dialogview.xml" value="0.27447916666666666" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/fragment_home.xml" value="0.22552083333333334" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/navigation_drawer_header.xml" value="0.264" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/layout/otpmaterialdialog.xml" value="0.176" />
+        <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/menu/drawer.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidProjects2/MyCustomer/app/src/main/res/mipmap-anydpi-v26/smartphone.xml" value="0.290625" />
       </map>
     </option>

@@ -1,10 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainDashboardActivity">
+    android:fitsSystemWindows="false"
+    android:layout_gravity="start"
+    tools:context=".view.activity.MainDashboardActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/hamburger"
+            android:layout_width="51dp"
+            android:layout_height="37dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:elevation="50dp"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="com.pravin.barcodeapp.mycustomer.view.fragment.HomeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_drawer"
+        app:menu="@menu/drawer"
+        app:headerLayout="@layout/navigation_drawer_header"
+        android:backgroundTint="@color/design_default_color_primary"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        app:itemIconSize="34dp"
+        android:elevation="20dp"
+        android:paddingStart="64dp"
+        android:layout_marginStart="-64dp"
+        android:layout_gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

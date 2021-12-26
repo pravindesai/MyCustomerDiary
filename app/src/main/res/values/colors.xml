@@ -10,6 +10,8 @@
     <color name="grey">#DCD9D9</color>
     <color name="blue">#2196F3</color>
 
+    <color name="purple_light">#C2A2EA</color>
+    <color name="color_primary_light">#975FE8</color>
 
 
 </resources>

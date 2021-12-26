@@ -16,4 +16,6 @@ object Constants {
     val password        = "password";
     val mailExtension   = "@mycustomer.xyz"
 
+    val DbName = "CustomerDB"
+
 }
