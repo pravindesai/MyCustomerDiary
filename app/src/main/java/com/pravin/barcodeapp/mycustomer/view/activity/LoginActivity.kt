@@ -12,6 +12,7 @@ import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
 import com.pravin.barcodeapp.mycustomer.view.dialog.OtpDialog
 import com.pravin.barcodeapp.mycustomer.viewModel.LoginActivityViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.*
 
 class LoginActivity : BaseActivity() {
     companion object{

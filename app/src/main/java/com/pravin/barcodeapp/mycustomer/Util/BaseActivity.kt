@@ -17,5 +17,7 @@ open class BaseActivity : AppCompatActivity() {
             applicationContext,
             RoomDb::class.java, Constants.DbName
         ).allowMainThreadQueries().build()
+
     }
+
 }

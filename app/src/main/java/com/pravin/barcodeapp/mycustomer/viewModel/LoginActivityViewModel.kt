@@ -8,6 +8,10 @@ import com.google.firebase.auth.SignInMethodQueryResult
 import com.pravin.barcodeapp.mycustomer.Util.Constants
 import com.pravin.barcodeapp.mycustomer.Util.FirebaseUtil
 import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
+import com.pravin.barcodeapp.mycustomer.retrofit.BaseDataRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginActivityViewModel: ViewModel() {
     interface OnViewModelResultPublished{
@@ -18,11 +22,19 @@ class LoginActivityViewModel: ViewModel() {
         fun openOtpDialog(bundle: Bundle)
     }
     var onViewModelResultPublished: OnViewModelResultPublished? = null
+    private val baseDataRepository: BaseDataRepository
+
     var auth:FirebaseAuth
 
     init {
         auth = FirebaseAuth.getInstance()
+        baseDataRepository = BaseDataRepository()
     }
+
+    fun getGenderOptions()          = baseDataRepository.getGenederOptions()
+    fun getStatusOptions()          = baseDataRepository.getStatusOptions()
+    fun getTypeOptions()            = baseDataRepository.getTypeOptions()
+
 
     fun login(phone: String, pass: String) {
         isUserExists("", phone, pass, Constants.MODE_LOGIN)

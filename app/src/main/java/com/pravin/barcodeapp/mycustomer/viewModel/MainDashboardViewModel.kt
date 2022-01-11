@@ -7,17 +7,11 @@ import com.pravin.barcodeapp.mycustomer.retrofit.AdminRepository
 import com.pravin.barcodeapp.mycustomer.retrofit.BaseDataRepository
 
 class MainDashboardViewModel: ViewModel() {
-    private val baseDataRepository:BaseDataRepository
     private val adminRepository:AdminRepository
 
     init {
-        baseDataRepository = BaseDataRepository()
         adminRepository = AdminRepository()
     }
-
-    fun getGenderOptions()          = baseDataRepository.getGenederOptions()
-    fun getStatusOptions()          = baseDataRepository.getStatusOptions()
-    fun getTypeOptions()            = baseDataRepository.getTypeOptions()
 
     fun getAdmin()                  = adminRepository.getAdmin()
     fun getAdmin(admin_ui:String)   = adminRepository.getAdmin(admin_ui)

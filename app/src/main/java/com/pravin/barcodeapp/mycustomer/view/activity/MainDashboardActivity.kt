@@ -62,7 +62,6 @@ class MainDashboardActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
 
-        Log.e(TAG, "onStart: "+roomDb.genderDao().getAll() )
     }
 
     private fun signOut() {

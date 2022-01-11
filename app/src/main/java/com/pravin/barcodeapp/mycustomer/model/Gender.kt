@@ -4,8 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-public data class Gender(
+data class Gender(
     @PrimaryKey(autoGenerate = true)
-    public  var id: Int,
-    public  var gender: String
+    var id: Int,
+    var gender: String
 )

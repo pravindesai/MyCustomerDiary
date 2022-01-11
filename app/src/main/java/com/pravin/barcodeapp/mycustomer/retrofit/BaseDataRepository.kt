@@ -4,64 +4,78 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.pravin.barcodeapp.mycustomer.Util.RetrofitRepository
-import com.pravin.barcodeapp.mycustomer.model.BaseData
+import com.pravin.barcodeapp.mycustomer.model.Gender
+import com.pravin.barcodeapp.mycustomer.model.Status
+import com.pravin.barcodeapp.mycustomer.model.Type
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class BaseDataRepository : RetrofitRepository() {
     private val baseDataApiEndPoints:BaseDataApiEndPoints
-    private lateinit var baseGenderData:MutableLiveData<BaseData>
-    private lateinit var baseStatusData:MutableLiveData<BaseData>
-    private lateinit var baseTypeData:MutableLiveData<BaseData>
+    private lateinit var baseGenderData:MutableLiveData<List<Gender>>
+    private lateinit var baseStatusData:MutableLiveData<List<Status>>
+    private lateinit var baseTypeData:MutableLiveData<List<Type>>
 
     init {
         baseDataApiEndPoints = retrofit.create(BaseDataApiEndPoints::class.java)
     }
 
-    fun getGenederOptions():MutableLiveData<BaseData>{
-        val call:Call<BaseData> = baseDataApiEndPoints.getGender()
+    fun getGenederOptions():MutableLiveData<List<Gender>>{
+        val call:Call<List<String>> = baseDataApiEndPoints.getGender()
         baseGenderData = MutableLiveData()
-        call.enqueue(object: Callback<BaseData>{
-            override fun onResponse(call: Call<BaseData>, response: Response<BaseData>) {
+        call.enqueue(object: Callback<List<String>>{
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
                 if (response.isSuccessful){
-                    baseGenderData.postValue(response.body())
+                        val genderList = mutableListOf<Gender>()
+                        response.body()?.forEach {
+                            genderList.add(Gender(0,it))
+                        }
+                        baseGenderData.postValue(genderList)
                     Log.e(TAG, "onResponse: "+response.body() )
                 }
             }
-            override fun onFailure(call: Call<BaseData>, t: Throwable) {
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
                 Log.e(TAG, "Failed ==> "+t.localizedMessage )
             }
         })
         return baseGenderData
     }
-    fun getStatusOptions():MutableLiveData<BaseData>{
-        val call:Call<BaseData> = baseDataApiEndPoints.getStatus()
+    fun getStatusOptions():MutableLiveData<List<Status>>{
+        val call:Call<List<String>> = baseDataApiEndPoints.getStatus()
         baseStatusData = MutableLiveData()
-        call.enqueue(object: Callback<BaseData>{
-            override fun onResponse(call: Call<BaseData>, response: Response<BaseData>) {
+        call.enqueue(object: Callback<List<String>>{
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
                 if (response.isSuccessful){
-                    baseGenderData.postValue(response.body())
+                    val statusList = mutableListOf<Status>()
+                    response.body()?.forEach {
+                        statusList.add(Status(0,it))
+                    }
+                    baseStatusData.postValue(statusList)
                     Log.e(TAG, "onResponse: "+response.body() )
                 }
             }
-            override fun onFailure(call: Call<BaseData>, t: Throwable) {
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
                 Log.e(TAG, "Failed ==> "+t.localizedMessage )
             }
         })
         return baseStatusData
     }
-    fun getTypeOptions():MutableLiveData<BaseData>{
-        val call:Call<BaseData> = baseDataApiEndPoints.getType()
+    fun getTypeOptions():MutableLiveData<List<Type>>{
+        val call:Call<List<String>> = baseDataApiEndPoints.getType()
         baseTypeData = MutableLiveData()
-        call.enqueue(object: Callback<BaseData>{
-            override fun onResponse(call: Call<BaseData>, response: Response<BaseData>) {
+        call.enqueue(object: Callback<List<String>>{
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
                 if (response.isSuccessful){
-                    baseGenderData.postValue(response.body())
+                    val typeList = mutableListOf<Type>()
+                    response.body()?.forEach {
+                        typeList.add(Type(0,it))
+                    }
+                    baseTypeData.postValue(typeList)
                     Log.e(TAG, "onResponse: "+response.body() )
                 }
             }
-            override fun onFailure(call: Call<BaseData>, t: Throwable) {
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
                 Log.e(TAG, "Failed ==> "+t.localizedMessage )
             }
         })
