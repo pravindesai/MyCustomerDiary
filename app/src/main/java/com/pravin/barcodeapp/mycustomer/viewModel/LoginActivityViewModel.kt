@@ -2,38 +2,33 @@ package com.pravin.barcodeapp.mycustomer.viewModel
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.SignInMethodQueryResult
 import com.pravin.barcodeapp.mycustomer.Util.Constants
 import com.pravin.barcodeapp.mycustomer.Util.FirebaseUtil
 import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
-import com.pravin.barcodeapp.mycustomer.retrofit.BaseDataRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.pravin.barcodeapp.mycustomer.model.Admin
+import com.pravin.barcodeapp.mycustomer.retrofit.AdminRepository
 
 class LoginActivityViewModel: ViewModel() {
     interface OnViewModelResultPublished{
         fun userAlreadyExists(phonenumber:String)
         fun userNotFound(phonenumber: String)
-        fun authenticationSucessful(phonenumber: String)
+        fun authenticationSucessful(phonenumber: String, admin_uid: String)
         fun authenticationFailed()
         fun openOtpDialog(bundle: Bundle)
     }
     var onViewModelResultPublished: OnViewModelResultPublished? = null
-    private val baseDataRepository: BaseDataRepository
+    var adminRepository:AdminRepository
 
     var auth:FirebaseAuth
 
     init {
         auth = FirebaseAuth.getInstance()
-        baseDataRepository = BaseDataRepository()
+        adminRepository = AdminRepository()
     }
-
-    fun getGenderOptions()          = baseDataRepository.getGenederOptions()
-    fun getStatusOptions()          = baseDataRepository.getStatusOptions()
-    fun getTypeOptions()            = baseDataRepository.getTypeOptions()
 
 
     fun login(phone: String, pass: String) {
@@ -47,7 +42,8 @@ class LoginActivityViewModel: ViewModel() {
 
     fun isUserExists(serviceName: String, phoneNumber:String, pass:String, MODE:Boolean){
         FirebaseUtil.auth = FirebaseAuth.getInstance()
-        val phoneMail = Constants.COUNTRY_PREFIX+phoneNumber+Constants.mailExtension
+        val phoneMail = phoneNumber+Constants.mailExtension
+        Log.e("**", "isUserExists: "+phoneMail )
         FirebaseUtil.auth.fetchSignInMethodsForEmail(phoneMail).addOnCompleteListener {
             if (it.isSuccessful){
                 val result: SignInMethodQueryResult? = it.result
@@ -61,7 +57,7 @@ class LoginActivityViewModel: ViewModel() {
                                         // Sign in success, update UI with the signed-in user's information
 
                                         UniversalProgressDialog.hide()
-                                        onViewModelResultPublished?.authenticationSucessful(phoneNumber)
+                                        onViewModelResultPublished?.authenticationSucessful(phoneNumber, auth.currentUser?.uid.toString())
                                     } else {
                                         onViewModelResultPublished?.authenticationFailed()
                                         UniversalProgressDialog.hide()
@@ -91,6 +87,11 @@ class LoginActivityViewModel: ViewModel() {
             }
         }
     }
+
+    fun postAdmin(admin: Admin):MutableLiveData<Admin> = adminRepository.postAdmin(admin)
+
+    fun getAdmin(adminUid:String):MutableLiveData<Admin> = adminRepository.getAdmin(adminUid)
+
 
 
 }

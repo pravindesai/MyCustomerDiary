@@ -48,6 +48,7 @@ class MainDashboardActivity : BaseActivity() {
                             dialog, which-> dialog.dismiss()
                         }
                         .setPositiveButton("Logout"){
+
                             dialog,which-> signOut()
                         }
                         .show()
@@ -69,6 +70,9 @@ class MainDashboardActivity : BaseActivity() {
         firebaseAuth.signOut()
         val loginIntent = Intent(this@MainDashboardActivity, LoginActivity::class.java)
         UniversalProgressDialog.hide()
+
+        SessionManager.delete(Constants.KEY_CURRENT_ADMIN)
+
         startActivity(loginIntent)
         loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
         loginIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

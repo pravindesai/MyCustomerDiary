@@ -1,17 +1,24 @@
 package com.pravin.barcodeapp.mycustomer.model
 
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.pravin.barcodeapp.mycustomer.database.AddressTypeConverter
 
+@Entity
 data class Customer(
-    @PrimaryKey
     @SerializedName("id")
     var id: Int,
+
+    @SerializedName("adminUid")
+    @PrimaryKey
+    var adminUid: String,
+
+    @TypeConverters(AddressTypeConverter::class)
     @SerializedName("address")
     var address: Address,
-    @SerializedName("adminUid")
-    var adminUid: String,
     @SerializedName("batchId")
     var batchId: Int,
     @SerializedName("due_date")

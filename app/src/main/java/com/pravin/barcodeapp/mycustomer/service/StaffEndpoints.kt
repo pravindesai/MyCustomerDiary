@@ -1,4 +1,4 @@
-package com.pravin.barcodeapp.mycustomer.retrofit
+package com.pravin.barcodeapp.mycustomer.service
 
 import com.pravin.barcodeapp.mycustomer.model.Customer
 import retrofit2.Call

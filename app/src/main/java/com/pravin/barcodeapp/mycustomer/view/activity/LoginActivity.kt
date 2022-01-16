@@ -8,7 +8,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.BaseActivity
 import com.pravin.barcodeapp.mycustomer.Util.Constants
+import com.pravin.barcodeapp.mycustomer.Util.SessionManager
 import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
+import com.pravin.barcodeapp.mycustomer.model.Address
+import com.pravin.barcodeapp.mycustomer.model.Admin
 import com.pravin.barcodeapp.mycustomer.view.dialog.OtpDialog
 import com.pravin.barcodeapp.mycustomer.viewModel.LoginActivityViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -51,7 +54,7 @@ class LoginActivity : BaseActivity() {
 
     fun loginClick(view: android.view.View) {
 
-        val sname :String = servicenameET.text.toString()
+        val sname:String = servicenameET.text.toString()
         val phone:String = phoneEt.text.toString()
         val pass :String = passwordEt.text.toString()
 
@@ -91,10 +94,15 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    class DialogDelegation(val context: LoginActivity) : OtpDialog.OnDialogResultPublished {
+    class DialogDelegation(val context: LoginActivity)
+        : OtpDialog.OnDialogResultPublished {
         val TAG = "**"+this::class.java.simpleName
         val activity = context
-        override fun onSucess(adminUid: String, sname:String, phonenumber: String) {
+        val loginActivityViewModel: LoginActivityViewModel =
+            ViewModelProvider(context).get(LoginActivityViewModel::class.java)
+
+
+        override fun onSucess(adminUid: String, sname:String, phonenumber: String, password:String) {
             Log.e(TAG, "onSucess: " )
 
                 UniversalProgressDialog.hide()
@@ -103,18 +111,25 @@ class LoginActivity : BaseActivity() {
                 intent.putExtra( Constants.adminUid, adminUid)
                 intent.putExtra( Constants.sname,    sname)
                 intent.putExtra( Constants.phone,    phonenumber)
+                intent.putExtra( Constants.password, password)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                context.startActivity(intent)
-                context.finishAffinity()
 
-                startDashBoardActivity(context)
+                var signInUser = Admin(0, Address(0,"","","","",0,"")
+                    ,adminUid, phonenumber+Constants.mailExtension,phonenumber,sname,
+                    "ACTIVE","FREE")
+                    SessionManager.saveAdmin(Constants.KEY_CURRENT_ADMIN,signInUser)
 
-        }
+                    UniversalProgressDialog.show(context)
+                    loginActivityViewModel.postAdmin(signInUser).observe(context, {
+                        Log.e(TAG, "onSucess: "+it )
+                        UniversalProgressDialog.hide()
+                        context.startActivity(intent)
+                        context.finishAffinity()
 
-        private fun startDashBoardActivity(context: LoginActivity) {
-            TODO("Not yet implemented")
+                    })
+
         }
 
         override fun onCancelled() {
@@ -129,8 +144,12 @@ class LoginActivity : BaseActivity() {
 
 
     }
-    class LoginViewModelDelegation(val activity: LoginActivity) :LoginActivityViewModel.OnViewModelResultPublished{
+    class LoginViewModelDelegation(val activity: LoginActivity)
+        :LoginActivityViewModel.OnViewModelResultPublished{
         val TAG = "**"+this::class.java.simpleName
+        val loginActivityViewModel: LoginActivityViewModel =
+            ViewModelProvider(activity).get(LoginActivityViewModel::class.java)
+
         override fun userAlreadyExists(phonenumber: String) {
             activity.PhoneNumberLayout.error = "User Already Exists"
             activity.PhoneNumberLayout.requestFocus()
@@ -143,21 +162,33 @@ class LoginActivity : BaseActivity() {
             Log.e(TAG, "userNotFound: "+phonenumber )
             UniversalProgressDialog.hide()
         }
-        override fun authenticationSucessful(phonenumber: String) {
+
+        override fun authenticationSucessful(phonenumber: String, adminUid: String) {
             Log.e(TAG, "Authentication sucessful: "+phonenumber )
 
             UniversalProgressDialog.hide()
 
             val intent = Intent(activity, MainDashboardActivity::class.java)
-            intent.putExtra( Constants.phone,    phonenumber)
+            intent.putExtra( Constants.phone,   phonenumber)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            activity.startActivity(intent)
-            activity.finishAffinity()
+
+            UniversalProgressDialog.show(activity)
+
+            Log.e(TAG, "looking for admin : "+adminUid )
+            loginActivityViewModel.getAdmin(adminUid).observe(activity,{
+                SessionManager.saveAdmin(Constants.KEY_CURRENT_ADMIN, it)
+                activity.startActivity(intent)
+                activity.finishAffinity()
+
+                UniversalProgressDialog.hide()
+            })
 
 
-            UniversalProgressDialog.hide()
+
+
+
         }
         override fun authenticationFailed() {
             activity.TextPasswordLayout.error = "Authentication Failed"

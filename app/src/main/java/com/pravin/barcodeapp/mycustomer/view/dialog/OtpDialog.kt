@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 
 class OtpDialog(val context:Activity, val bundle: Bundle) : DialogFragment() {
     interface OnDialogResultPublished{
-        fun onSucess(adminUid:String, sname:String, phone: String)
+        fun onSucess(adminUid:String, sname:String, phone: String, password:String)
         fun onCancelled()
         fun onFailed()
     }
@@ -136,7 +136,7 @@ class OtpDialog(val context:Activity, val bundle: Bundle) : DialogFragment() {
                     Log.e(TAG, "signInWithPhoneAuthCredential: "+auth.currentUser?.email )
                 }
                 this.dismiss()
-                onDialogResultPublished?.onSucess(auth.currentUser?.uid.toString(), sname, phone)
+                onDialogResultPublished?.onSucess(auth.currentUser?.uid.toString(), sname, phone, password)
             }else{
                 Log.e(TAG, "signInWithPhoneAuthCredential: FAILED" )
                 onDialogResultPublished?.onFailed()

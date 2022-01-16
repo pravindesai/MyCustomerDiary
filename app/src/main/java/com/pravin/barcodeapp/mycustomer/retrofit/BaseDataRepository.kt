@@ -1,18 +1,18 @@
 package com.pravin.barcodeapp.mycustomer.retrofit
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.pravin.barcodeapp.mycustomer.Util.RetrofitRepository
 import com.pravin.barcodeapp.mycustomer.model.Gender
 import com.pravin.barcodeapp.mycustomer.model.Status
 import com.pravin.barcodeapp.mycustomer.model.Type
+import com.pravin.barcodeapp.mycustomer.service.BaseDataApiEndPoints
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class BaseDataRepository : RetrofitRepository() {
-    private val baseDataApiEndPoints:BaseDataApiEndPoints
+    private val baseDataApiEndPoints: BaseDataApiEndPoints
     private lateinit var baseGenderData:MutableLiveData<List<Gender>>
     private lateinit var baseStatusData:MutableLiveData<List<Status>>
     private lateinit var baseTypeData:MutableLiveData<List<Type>>

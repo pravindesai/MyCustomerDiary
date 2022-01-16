@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.pravin.barcodeapp.mycustomer.Util.RetrofitRepository
 import com.pravin.barcodeapp.mycustomer.model.Admin
 import com.pravin.barcodeapp.mycustomer.model.Batch
+import com.pravin.barcodeapp.mycustomer.service.AdminEndpoints
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class AdminRepository : RetrofitRepository() {
-    private val adminEndpoints:AdminEndpoints
+    private val adminEndpoints: AdminEndpoints
 
     init {
         adminEndpoints = retrofit.create(AdminEndpoints::class.java)

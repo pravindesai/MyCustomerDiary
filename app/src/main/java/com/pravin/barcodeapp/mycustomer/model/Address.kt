@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Address(
     @SerializedName("id")
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Int,
     @SerializedName("area")
     var area: String,
