@@ -10,8 +10,9 @@ import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.Constants
 import com.pravin.barcodeapp.mycustomer.Util.SessionManager
 import com.pravin.barcodeapp.mycustomer.model.Admin
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     val TAG = "**"+this::class.java.simpleName

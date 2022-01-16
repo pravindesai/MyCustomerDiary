@@ -24,6 +24,6 @@ object UniversalProgressDialog {
     fun hide(){
         if (!this::progressDialog.isInitialized) return
         if (!progressDialog.isShowing) return
-        progressDialog.hide()
+        progressDialog.dismiss()
     }
 }

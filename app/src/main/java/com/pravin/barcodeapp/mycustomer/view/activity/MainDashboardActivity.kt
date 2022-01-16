@@ -3,6 +3,7 @@ package com.pravin.barcodeapp.mycustomer.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -11,20 +12,22 @@ import com.google.firebase.auth.FirebaseUser
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.*
 import com.pravin.barcodeapp.mycustomer.viewModel.MainDashboardViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.navigation_drawer_header.*
 import kotlinx.android.synthetic.main.navigation_drawer_header.view.*
 
+@AndroidEntryPoint
 class MainDashboardActivity : BaseActivity() {
 
-    lateinit var mainDashboardViewModel:MainDashboardViewModel
+    val mainDashboardViewModel:MainDashboardViewModel by viewModels()
+
     lateinit var firebaseUser: FirebaseUser
     lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainDashboardViewModel = ViewModelProvider(this).get(MainDashboardViewModel::class.java)
 
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseUser = firebaseAuth.currentUser!!

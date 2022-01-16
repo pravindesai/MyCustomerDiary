@@ -4,28 +4,20 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.room.Room
-import com.pravin.barcodeapp.mycustomer.Util.Constants
-import com.pravin.barcodeapp.mycustomer.database.RoomDb
-import com.pravin.barcodeapp.mycustomer.retrofit.AdminRepository
 import com.pravin.barcodeapp.mycustomer.retrofit.BaseDataRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.multibindings.IntKey
+import javax.inject.Inject
 
-class SplashScreenViewModel(application: Application) :AndroidViewModel(application) {
+@HiltViewModel
+class SplashScreenViewModel @Inject constructor() :ViewModel() {
     val TAG = "**"+this::class.java.simpleName
 
-    private val baseDataRepository: BaseDataRepository
-
-    init {
-        baseDataRepository = BaseDataRepository()
-    }
+    @Inject
+    lateinit var baseDataRepository: BaseDataRepository
 
     fun getGenderOptions()          = baseDataRepository.getGenederOptions()
     fun getStatusOptions()          = baseDataRepository.getStatusOptions()
     fun getTypeOptions()            = baseDataRepository.getTypeOptions()
-
-
+    
 }

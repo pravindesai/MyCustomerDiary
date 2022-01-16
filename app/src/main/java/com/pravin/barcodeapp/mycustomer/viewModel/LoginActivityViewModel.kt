@@ -11,8 +11,11 @@ import com.pravin.barcodeapp.mycustomer.Util.FirebaseUtil
 import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
 import com.pravin.barcodeapp.mycustomer.model.Admin
 import com.pravin.barcodeapp.mycustomer.retrofit.AdminRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginActivityViewModel: ViewModel() {
+@HiltViewModel
+class LoginActivityViewModel @Inject constructor(): ViewModel() {
     interface OnViewModelResultPublished{
         fun userAlreadyExists(phonenumber:String)
         fun userNotFound(phonenumber: String)
@@ -21,13 +24,14 @@ class LoginActivityViewModel: ViewModel() {
         fun openOtpDialog(bundle: Bundle)
     }
     var onViewModelResultPublished: OnViewModelResultPublished? = null
-    var adminRepository:AdminRepository
+
+    @Inject
+    lateinit var adminRepository:AdminRepository
 
     var auth:FirebaseAuth
 
     init {
         auth = FirebaseAuth.getInstance()
-        adminRepository = AdminRepository()
     }
 
 
@@ -91,7 +95,5 @@ class LoginActivityViewModel: ViewModel() {
     fun postAdmin(admin: Admin):MutableLiveData<Admin> = adminRepository.postAdmin(admin)
 
     fun getAdmin(adminUid:String):MutableLiveData<Admin> = adminRepository.getAdmin(adminUid)
-
-
 
 }

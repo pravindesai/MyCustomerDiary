@@ -1,9 +1,11 @@
-package com.pravin.barcodeapp.mycustomer.Util
+package com.pravin.barcodeapp.mycustomer.application
 
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class CustomApplication: Application() {
     val TAG:String = "**"+this::class.java.simpleName
     companion object{

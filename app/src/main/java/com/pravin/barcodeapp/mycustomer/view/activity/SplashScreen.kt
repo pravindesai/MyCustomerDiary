@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.HandlerThread
 import android.os.Looper
 import android.util.Log
+import androidx.activity.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.BaseActivity
@@ -13,17 +14,18 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.pravin.barcodeapp.mycustomer.viewModel.SplashScreenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
 @DelicateCoroutinesApi
+@AndroidEntryPoint
 class SplashScreen : BaseActivity() {
-    lateinit var splashScreenViewModel: SplashScreenViewModel
+
+    private val splashScreenViewModel: SplashScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-
-        splashScreenViewModel = ViewModelProvider(this).get(SplashScreenViewModel::class.java)
 
         downloadBaseData()
 

@@ -10,16 +10,17 @@ import com.pravin.barcodeapp.mycustomer.service.BaseDataApiEndPoints
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class BaseDataRepository : RetrofitRepository() {
-    private val baseDataApiEndPoints: BaseDataApiEndPoints
+class BaseDataRepository @Inject constructor(): RetrofitRepository() {
+
+    @Inject
+    lateinit var baseDataApiEndPoints: BaseDataApiEndPoints
+
     private lateinit var baseGenderData:MutableLiveData<List<Gender>>
     private lateinit var baseStatusData:MutableLiveData<List<Status>>
     private lateinit var baseTypeData:MutableLiveData<List<Type>>
 
-    init {
-        baseDataApiEndPoints = retrofit.create(BaseDataApiEndPoints::class.java)
-    }
 
     fun getGenederOptions():MutableLiveData<List<Gender>>{
         val call:Call<List<String>> = baseDataApiEndPoints.getGender()

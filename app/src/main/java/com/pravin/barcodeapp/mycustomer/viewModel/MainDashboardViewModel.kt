@@ -4,14 +4,14 @@ import androidx.lifecycle.ViewModel
 import com.pravin.barcodeapp.mycustomer.model.Admin
 import com.pravin.barcodeapp.mycustomer.model.Batch
 import com.pravin.barcodeapp.mycustomer.retrofit.AdminRepository
-import com.pravin.barcodeapp.mycustomer.retrofit.BaseDataRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainDashboardViewModel: ViewModel() {
-    private val adminRepository:AdminRepository
+@HiltViewModel
+class MainDashboardViewModel @Inject constructor(): ViewModel() {
+    @Inject
+    lateinit var adminRepository:AdminRepository
 
-    init {
-        adminRepository = AdminRepository()
-    }
 
     fun getAdmin()                  = adminRepository.getAdmin()
     fun getAdmin(admin_ui:String)   = adminRepository.getAdmin(admin_ui)

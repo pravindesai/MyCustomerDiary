@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.BaseActivity
@@ -14,9 +15,11 @@ import com.pravin.barcodeapp.mycustomer.model.Address
 import com.pravin.barcodeapp.mycustomer.model.Admin
 import com.pravin.barcodeapp.mycustomer.view.dialog.OtpDialog
 import com.pravin.barcodeapp.mycustomer.viewModel.LoginActivityViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.*
 
+@AndroidEntryPoint
 class LoginActivity : BaseActivity() {
     companion object{
         private val SIGN_IN_METHOD_PASSWORD = "PASSWORD"
@@ -25,13 +28,12 @@ class LoginActivity : BaseActivity() {
 
     var LAYOUT_SWITCH:Boolean = true
     var MODE = Constants.MODE_LOGIN
-    lateinit var loginActivityViewModel: LoginActivityViewModel
+    private val loginActivityViewModel: LoginActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginActivityViewModel = ViewModelProvider(this).get(LoginActivityViewModel::class.java)
         loginActivityViewModel.onViewModelResultPublished = LoginViewModelDelegation(this)
 
     }
@@ -94,13 +96,10 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    class DialogDelegation(val context: LoginActivity)
+    inner class DialogDelegation(val context: LoginActivity)
         : OtpDialog.OnDialogResultPublished {
         val TAG = "**"+this::class.java.simpleName
         val activity = context
-        val loginActivityViewModel: LoginActivityViewModel =
-            ViewModelProvider(context).get(LoginActivityViewModel::class.java)
-
 
         override fun onSucess(adminUid: String, sname:String, phonenumber: String, password:String) {
             Log.e(TAG, "onSucess: " )
@@ -144,11 +143,9 @@ class LoginActivity : BaseActivity() {
 
 
     }
-    class LoginViewModelDelegation(val activity: LoginActivity)
+    inner class LoginViewModelDelegation(val activity: LoginActivity)
         :LoginActivityViewModel.OnViewModelResultPublished{
         val TAG = "**"+this::class.java.simpleName
-        val loginActivityViewModel: LoginActivityViewModel =
-            ViewModelProvider(activity).get(LoginActivityViewModel::class.java)
 
         override fun userAlreadyExists(phonenumber: String) {
             activity.PhoneNumberLayout.error = "User Already Exists"
@@ -162,7 +159,6 @@ class LoginActivity : BaseActivity() {
             Log.e(TAG, "userNotFound: "+phonenumber )
             UniversalProgressDialog.hide()
         }
-
         override fun authenticationSucessful(phonenumber: String, adminUid: String) {
             Log.e(TAG, "Authentication sucessful: "+phonenumber )
 
@@ -197,7 +193,6 @@ class LoginActivity : BaseActivity() {
             activity.TextPasswordLayout.requestFocus()
             UniversalProgressDialog.hide()
         }
-
         override fun openOtpDialog(bundle: Bundle) {
             val otpDialog = OtpDialog(activity, bundle)
             otpDialog.onDialogResultPublished = DialogDelegation(activity)

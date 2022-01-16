@@ -9,13 +9,11 @@ import com.pravin.barcodeapp.mycustomer.service.AdminEndpoints
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class AdminRepository : RetrofitRepository() {
-    private val adminEndpoints: AdminEndpoints
-
-    init {
-        adminEndpoints = retrofit.create(AdminEndpoints::class.java)
-    }
+class AdminRepository @Inject constructor(): RetrofitRepository() {
+    @Inject
+    lateinit var adminEndpoints: AdminEndpoints
 
     fun getAdmin():MutableLiveData<List<Admin>>{
         val adminList:MutableLiveData<List<Admin>> = MutableLiveData()

@@ -3,6 +3,7 @@ package com.pravin.barcodeapp.mycustomer.Util
 import android.content.SharedPreferences
 import android.util.Log
 import com.google.gson.Gson
+import com.pravin.barcodeapp.mycustomer.application.CustomApplication
 import com.pravin.barcodeapp.mycustomer.model.Admin
 import com.pravin.barcodeapp.mycustomer.model.Customer
 import com.pravin.barcodeapp.mycustomer.model.Staff
