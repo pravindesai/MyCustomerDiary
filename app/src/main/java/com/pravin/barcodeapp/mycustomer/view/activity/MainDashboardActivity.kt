@@ -3,10 +3,13 @@ package com.pravin.barcodeapp.mycustomer.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.pravin.barcodeapp.mycustomer.R
@@ -61,6 +64,7 @@ class MainDashboardActivity : BaseActivity() {
             }
         }
 
+        addCustomerImg.setOnClickListener(AddCustomerListener())
     }
 
     override fun onStart() {
@@ -84,4 +88,10 @@ class MainDashboardActivity : BaseActivity() {
         finishAffinity()
     }
 
+    class AddCustomerListener:View.OnClickListener{
+        override fun onClick(v: View) {
+            Snackbar.make(v,"Add customer", Snackbar.LENGTH_SHORT).show()
+        }
+
+    }
 }

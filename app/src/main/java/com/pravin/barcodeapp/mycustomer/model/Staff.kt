@@ -10,6 +10,8 @@ data class Staff(
     @PrimaryKey
     @SerializedName("id")
     var id: Int,
+    @SerializedName("staffId")
+    var staffId: Int,
     @SerializedName("adminUid")
     var adminUid: String,
     @SerializedName("description")
@@ -20,8 +22,6 @@ data class Staff(
     var endDate: Int,
     @SerializedName("fee")
     var fee: Int,
-    @SerializedName("staffId")
-    var staffId: Int,
     @SerializedName("start_Date")
     var startDate: Int,
     @SerializedName("type")
