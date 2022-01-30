@@ -79,6 +79,7 @@ class MainDashboardActivity : BaseActivity() {
         UniversalProgressDialog.hide()
 
         SessionManager.delete(Constants.KEY_CURRENT_ADMIN)
+        SessionManager.delete(Constants.KEY_CURRENT_STAFF)
 
         startActivity(loginIntent)
         loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )

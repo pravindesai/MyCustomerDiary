@@ -10,6 +10,7 @@ import com.pravin.barcodeapp.mycustomer.Util.Constants
 import com.pravin.barcodeapp.mycustomer.Util.FirebaseUtil
 import com.pravin.barcodeapp.mycustomer.Util.UniversalProgressDialog
 import com.pravin.barcodeapp.mycustomer.model.Admin
+import com.pravin.barcodeapp.mycustomer.model.Staff
 import com.pravin.barcodeapp.mycustomer.retrofit.AdminRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -92,7 +93,7 @@ class LoginActivityViewModel @Inject constructor(): ViewModel() {
         }
     }
 
-    fun postAdmin(admin: Admin):MutableLiveData<Admin> = adminRepository.postAdmin(admin)
+    fun postAdmin(admin: Admin):MutableLiveData<Staff> = adminRepository.postAdmin(admin)
 
     fun getAdmin(adminUid:String):MutableLiveData<Admin> = adminRepository.getAdmin(adminUid)
 

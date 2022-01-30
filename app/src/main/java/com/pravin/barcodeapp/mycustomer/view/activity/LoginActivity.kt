@@ -123,6 +123,7 @@ class LoginActivity : BaseActivity() {
                     UniversalProgressDialog.show(context)
                     loginActivityViewModel.postAdmin(signInUser).observe(context, {
                         Log.e(TAG, "onSucess: "+it )
+                        SessionManager.saveStaff(Constants.KEY_CURRENT_STAFF, it)
                         UniversalProgressDialog.hide()
                         context.startActivity(intent)
                         context.finishAffinity()

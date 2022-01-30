@@ -15,10 +15,10 @@ interface AdminEndpoints {
     fun getAdmin( @Query("admin_uid") adminUid: String): Call<Admin>
 
     @POST("admin")
-    fun postAdmin( @Body admin: Admin): Call<Admin>
+    fun postAdmin( @Body admin: Admin): Call<Staff>
 
     @PUT("admin/{admin_uid}")
-    fun putAdmin( @Query("admin_uid") adminUid: String, @Body admin: Admin): Call<Admin>
+    fun putAdmin( @Query("admin_uid") adminUid: String, @Body admin: Admin): Call<Staff>
 
     // Admin endpoints for batch
 

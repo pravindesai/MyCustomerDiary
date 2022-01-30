@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.pravin.barcodeapp.mycustomer.Util.RetrofitRepository
 import com.pravin.barcodeapp.mycustomer.model.Admin
 import com.pravin.barcodeapp.mycustomer.model.Batch
+import com.pravin.barcodeapp.mycustomer.model.Staff
 import com.pravin.barcodeapp.mycustomer.service.AdminEndpoints
 import retrofit2.Call
 import retrofit2.Callback
@@ -53,11 +54,11 @@ class AdminRepository @Inject constructor(): RetrofitRepository() {
         return admin
     }
 
-    fun postAdmin(admin: Admin):MutableLiveData<Admin>{
-        val uploadedAdmin = MutableLiveData<Admin>()
-        val call:Call<Admin> = adminEndpoints.postAdmin(admin)
-        call.enqueue(object:Callback<Admin>{
-            override fun onResponse(call: Call<Admin>, response: Response<Admin>) {
+    fun postAdmin(admin: Admin):MutableLiveData<Staff>{
+        val uploadedAdmin = MutableLiveData<Staff>()
+        val call:Call<Staff> = adminEndpoints.postAdmin(admin)
+        call.enqueue(object:Callback<Staff>{
+            override fun onResponse(call: Call<Staff>, response: Response<Staff>) {
                 if (response.isSuccessful){
                     uploadedAdmin.postValue(response.body())
                     Log.e(TAG, "onResponse: "+response.body() )
@@ -65,26 +66,26 @@ class AdminRepository @Inject constructor(): RetrofitRepository() {
                     Log.e(TAG, "onResponse: Error "+response )
                 }
             }
-            override fun onFailure(call: Call<Admin>, t: Throwable) {
+            override fun onFailure(call: Call<Staff>, t: Throwable) {
                 Log.e(TAG, "onFailure: "+t.localizedMessage )
             }
         })
         return uploadedAdmin
     }
 
-    fun putAdmin(admin_uid: String, admin: Admin):MutableLiveData<Admin>{
+    fun putAdmin(admin_uid: String, admin: Admin):MutableLiveData<Staff>{
 
-        val updatedAdmin = MutableLiveData<Admin>()
-        val call:Call<Admin> = adminEndpoints.putAdmin(admin_uid, admin)
-        call.enqueue(object:Callback<Admin>{
-            override fun onResponse(call: Call<Admin>, response: Response<Admin>) {
+        val updatedAdmin = MutableLiveData<Staff>()
+        val call:Call<Staff> = adminEndpoints.putAdmin(admin_uid, admin)
+        call.enqueue(object:Callback<Staff>{
+            override fun onResponse(call: Call<Staff>, response: Response<Staff>) {
                 if (response.isSuccessful){
                     updatedAdmin.postValue(response.body())
                     Log.e(TAG, "onResponse: "+response.body() )
                 }
             }
 
-            override fun onFailure(call: Call<Admin>, t: Throwable) {
+            override fun onFailure(call: Call<Staff>, t: Throwable) {
                 Log.e(TAG, "onFailure: FAILED" )
             }
 
