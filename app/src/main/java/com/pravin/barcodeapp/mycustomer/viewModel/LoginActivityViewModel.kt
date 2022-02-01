@@ -16,7 +16,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginActivityViewModel @Inject constructor(): ViewModel() {
+class LoginActivityViewModel @Inject constructor(): BaseViewModel() {
     interface OnViewModelResultPublished{
         fun userAlreadyExists(phonenumber:String)
         fun userNotFound(phonenumber: String)
@@ -96,5 +96,6 @@ class LoginActivityViewModel @Inject constructor(): ViewModel() {
     fun postAdmin(admin: Admin):MutableLiveData<Staff> = adminRepository.postAdmin(admin)
 
     fun getAdmin(adminUid:String):MutableLiveData<Admin> = adminRepository.getAdmin(adminUid)
+    fun getStaff(adminUid:String, phonenumber: String) = adminRepository.getStaff(adminUid, phonenumber)
 
 }

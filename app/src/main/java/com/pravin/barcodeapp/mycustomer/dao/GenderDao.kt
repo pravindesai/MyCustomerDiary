@@ -7,14 +7,14 @@ import com.pravin.barcodeapp.mycustomer.model.Gender
 interface GenderDao {
 
     @Query("SELECT * FROM gender")
-     fun getAll(): List<Gender>
+     suspend fun getAll(): List<Gender>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insert(vararg gender: Gender)
+    suspend fun insert(vararg gender: Gender)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insertAll(objects: List<Gender>)
+    suspend fun insertAll(objects: List<Gender>)
 
     @Delete
-     fun delete(gender: Gender)
+    suspend fun delete(gender: Gender)
 }

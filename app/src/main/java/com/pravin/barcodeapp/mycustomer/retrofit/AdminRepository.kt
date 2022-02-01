@@ -54,6 +54,26 @@ class AdminRepository @Inject constructor(): RetrofitRepository() {
         return admin
     }
 
+    fun getStaff(admin_uid:String, phone:String):MutableLiveData<Staff>{
+        val staff = MutableLiveData<Staff>()
+        val call:Call<Staff> = adminEndpoints.getDefaultStaff(admin_uid, phone)
+        call.enqueue(object:Callback<Staff>{
+            override fun onResponse(call: Call<Staff>, response: Response<Staff>) {
+                if (response.isSuccessful){
+                    staff.postValue(response.body())
+                    Log.e(TAG, "onResponse: "+response.body() )
+                }else{
+                    Log.e(TAG, "onResponse: Error "+response )
+                }
+            }
+            override fun onFailure(call: Call<Staff>, t: Throwable) {
+                Log.e(TAG, "onFailure: "+t.localizedMessage )
+            }
+        })
+
+        return staff
+    }
+
     fun postAdmin(admin: Admin):MutableLiveData<Staff>{
         val uploadedAdmin = MutableLiveData<Staff>()
         val call:Call<Staff> = adminEndpoints.postAdmin(admin)

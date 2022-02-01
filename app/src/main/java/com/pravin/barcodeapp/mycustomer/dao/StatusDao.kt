@@ -7,14 +7,14 @@ import com.pravin.barcodeapp.mycustomer.model.Status
 interface StatusDao {
 
     @Query("SELECT * FROM Status")
-     fun getAll(): List<Status>
+     suspend fun getAll(): List<Status>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insert(vararg status: Status)
+     suspend fun insert(vararg status: Status)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insertAll(objects: List<Status>)
+     suspend fun insertAll(objects: List<Status>)
 
     @Delete
-     fun delete(status: Status)
+     suspend fun delete(status: Status)
 }

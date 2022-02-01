@@ -7,17 +7,17 @@ import com.pravin.barcodeapp.mycustomer.model.Gender
 @Dao
 interface CustomerDao {
     @Query("SELECT * FROM Customer")
-    fun getAll(): List<Customer>
+    suspend fun getAll(): List<Customer>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg gender: Customer)
+    suspend fun insert(vararg gender: Customer)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(objects: List<Customer>)
+    suspend fun insertAll(objects: List<Customer>)
 
     @Query("SELECT * FROM Customer where adminUid = :adminUid ")
-    fun selectByAdminUid(adminUid:String)
+    suspend fun selectByAdminUid(adminUid:String):List<Customer>
 
     @Delete
-    fun delete(gender: Customer)
+    suspend fun delete(gender: Customer)
 }

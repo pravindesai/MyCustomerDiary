@@ -8,14 +8,14 @@ import com.pravin.barcodeapp.mycustomer.model.Type
 interface TypeDao {
 
     @Query("SELECT * FROM Type")
-    fun getAll(): List<Type>
+    suspend fun getAll(): List<Type>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg type: Type)
+    suspend fun insert(vararg type: Type)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(objects: List<Type>)
+    suspend fun insertAll(objects: List<Type>)
 
     @Delete
-     fun delete(type: Type)
+     suspend fun delete(type: Type)
 }

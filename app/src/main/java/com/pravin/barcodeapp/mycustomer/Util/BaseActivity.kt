@@ -11,9 +11,6 @@ import javax.inject.Inject
 open class BaseActivity : AppCompatActivity() {
     val TAG = "**"+this::class.java.simpleName
 
-    @Inject
-    lateinit var roomDb: RoomDb
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

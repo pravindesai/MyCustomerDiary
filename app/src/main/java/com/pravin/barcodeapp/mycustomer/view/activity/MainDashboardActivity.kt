@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.pravin.barcodeapp.mycustomer.R
 import com.pravin.barcodeapp.mycustomer.Util.*
+import com.pravin.barcodeapp.mycustomer.model.Staff
 import com.pravin.barcodeapp.mycustomer.viewModel.MainDashboardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,6 +28,7 @@ class MainDashboardActivity : BaseActivity() {
 
     lateinit var firebaseUser: FirebaseUser
     lateinit var firebaseAuth: FirebaseAuth
+    lateinit var phoneNumber: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,12 +66,17 @@ class MainDashboardActivity : BaseActivity() {
             }
         }
 
-        addCustomerImg.setOnClickListener(AddCustomerListener())
+
     }
 
     override fun onStart() {
         super.onStart()
-
+        phoneNumber = intent.getStringExtra(Constants.phone).toString()
+        if (!phoneNumber.trim().isBlank() || !phoneNumber.trim().isEmpty()) {
+            mainDashboardViewModel.getStaff(firebaseUser.uid, phoneNumber).observe(this, {
+                SessionManager.saveStaff(Constants.KEY_CURRENT_STAFF, it)
+            })
+        }
     }
 
     private fun signOut() {
@@ -89,10 +96,5 @@ class MainDashboardActivity : BaseActivity() {
         finishAffinity()
     }
 
-    class AddCustomerListener:View.OnClickListener{
-        override fun onClick(v: View) {
-            Snackbar.make(v,"Add customer", Snackbar.LENGTH_SHORT).show()
-        }
 
-    }
 }

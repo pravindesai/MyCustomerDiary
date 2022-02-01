@@ -39,6 +39,9 @@ interface AdminEndpoints {
 
     //Admin endpoints for staff
 
+    @GET("admin/{admin_uid}/{phone}")
+    fun getDefaultStaff( @Query("admin_uid") adminUid: String,@Query("phone") phone:String): Call<Staff>
+
     @GET("admin/{admin_uid}/batch/staff/{staffid}")
     fun getAllBatchForStaff(@Query("admin_uid") admin_uid:String,
                             @Query("staffid") staffid:String):Call<List<Batch>>

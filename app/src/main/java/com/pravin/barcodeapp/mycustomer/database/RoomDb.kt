@@ -3,6 +3,7 @@ package com.pravin.barcodeapp.mycustomer.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.pravin.barcodeapp.mycustomer.dao.CustomerDao
 import com.pravin.barcodeapp.mycustomer.dao.GenderDao
 import com.pravin.barcodeapp.mycustomer.dao.StatusDao
 import com.pravin.barcodeapp.mycustomer.dao.TypeDao
@@ -17,4 +18,5 @@ abstract class RoomDb : RoomDatabase() {
     abstract fun genderDao(): GenderDao
     abstract fun statusDao(): StatusDao
     abstract fun typeDao():TypeDao
+    abstract fun customerDao():CustomerDao
 }

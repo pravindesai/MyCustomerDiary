@@ -118,11 +118,11 @@ class LoginActivity : BaseActivity() {
                 var signInUser = Admin(0, Address(0,"","","","",0,"")
                     ,adminUid, phonenumber+Constants.mailExtension,phonenumber,sname,
                     "ACTIVE","FREE")
-                    SessionManager.saveAdmin(Constants.KEY_CURRENT_ADMIN,signInUser)
 
                     UniversalProgressDialog.show(context)
                     loginActivityViewModel.postAdmin(signInUser).observe(context, {
                         Log.e(TAG, "onSucess: "+it )
+                        SessionManager.saveAdmin(Constants.KEY_CURRENT_ADMIN,signInUser)
                         SessionManager.saveStaff(Constants.KEY_CURRENT_STAFF, it)
                         UniversalProgressDialog.hide()
                         context.startActivity(intent)
@@ -176,6 +176,7 @@ class LoginActivity : BaseActivity() {
             Log.e(TAG, "looking for admin : "+adminUid )
             loginActivityViewModel.getAdmin(adminUid).observe(activity,{
                 SessionManager.saveAdmin(Constants.KEY_CURRENT_ADMIN, it)
+
                 activity.startActivity(intent)
                 activity.finishAffinity()
 

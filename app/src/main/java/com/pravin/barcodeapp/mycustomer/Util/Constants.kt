@@ -9,6 +9,7 @@ object Constants {
     const val MODE_LOGIN = true
     const val MODE_SIGNUP = false
     const val COUNTRY_PREFIX = "+91"
+    const val SYNC_DATA = "IS_THERE_DATA_TO_SYNC"
 
 
     val adminUid        = "adminUid";

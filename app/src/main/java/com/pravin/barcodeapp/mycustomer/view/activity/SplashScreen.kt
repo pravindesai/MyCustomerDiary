@@ -27,7 +27,7 @@ class SplashScreen : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        downloadBaseData()
+        splashScreenViewModel.downloadBaseData()
 
         Handler(Looper.getMainLooper()).postDelayed({
             //If user not logged in already else
@@ -44,27 +44,6 @@ class SplashScreen : BaseActivity() {
 
         }, 3000)
 
-    }
-
-    fun downloadBaseData(){
-
-            if (roomDb.genderDao().getAll().size <= 0) {
-                splashScreenViewModel.getGenderOptions().observe(this,{ genderList->
-                    roomDb.genderDao().insertAll(genderList)
-                })
-            }
-
-            if (roomDb.statusDao().getAll().size <= 0) {
-                splashScreenViewModel.getStatusOptions().observe(this,{ statuslist ->
-                        roomDb.statusDao().insertAll(statuslist)
-                })
-            }
-
-            if (roomDb.typeDao().getAll().size <= 0) {
-                splashScreenViewModel.getTypeOptions().observe(this,{ typelist->
-                        roomDb.typeDao().insertAll(typelist)
-                })
-            }
     }
 
 }

@@ -1,20 +1,17 @@
 package com.pravin.barcodeapp.mycustomer.service
 
-import com.pravin.barcodeapp.mycustomer.model.Gender
-import com.pravin.barcodeapp.mycustomer.model.Status
-import com.pravin.barcodeapp.mycustomer.model.Type
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface BaseDataApiEndPoints {
 
     @GET("basedata/gender")
-    fun getGender(): Call<List<String>>
+    suspend fun getGender(): List<String>
 
     @GET("basedata/status")
-    fun getStatus(): Call<List<String>>
+    suspend fun getStatus(): List<String>
 
     @GET("basedata/type")
-    fun getType(): Call<List<String>>
+    suspend fun getType(): List<String>
 
 }

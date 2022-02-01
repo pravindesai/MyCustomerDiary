@@ -25,6 +25,13 @@ object SessionManager {
         gson = Gson()
     }
 
+    fun setDataToSync(value:Boolean){
+        editor.putBoolean(Constants.SYNC_DATA, value)
+        editor.commit()
+    }
+    fun isDataToSync():Boolean = sharedPref.getBoolean(Constants.SYNC_DATA, false)
+
+
     fun saveBoolean(key:String, value:Boolean){
         editor.putBoolean(key, value)
         editor.commit()
